@@ -8,23 +8,44 @@ import java.util.Scanner;
 public class MainApplication {
 
     public static void main(String[] args) {
-        int numPets = getInteger("How many pets do you have? ");
-        String[][] tempHolding = new String[numPets][2];
+        Pet[] pets = getPets();
 
-        String name;
-        String type;
-        for (int i = 0; i<numPets; i++) {
-            name = getInput("Name a pet: ");
-            type = getInput("What type of pet is it? ");
-            tempHolding[i][0] = name;
-            tempHolding[i][1] = type;
-        }
-
-        for (String[] pet: tempHolding) {
-            System.out.println(String.format("Pet: %s   Type: %s", pet[0], pet[1]));
+        String[] className;
+        String raw;
+        for (Pet pet: pets) {
+            System.out.println(pet.outputPet());
         }
 
     }
+
+    public static Pet[] getPets () {
+        int numPets = getInteger("How many pets do you have? ");
+        Pet[] pets = new Pet[numPets];
+
+        String name;
+        String type;
+
+        for (int i = 0; i<numPets; i++) {
+            name = getInput("Name a pet: ");
+            type = getInput("What type of pet is it? ");
+            switch (type.toLowerCase()) {
+                case "dog":
+                    pets[i] = new Dog(name);
+                    break;
+                case "cat":
+                    pets[i] = new Cat(name);
+                    break;
+                case "fish":
+                    pets[i] = new Fish(name);
+                    break;
+                default:
+                    pets[i] = new Pet(name);
+                    break;
+            }
+        }
+    }
+
+
 
     public static String getInput(String prompt) {
         System.out.print(prompt);
