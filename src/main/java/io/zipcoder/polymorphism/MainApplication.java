@@ -43,6 +43,7 @@ public class MainApplication {
                     break;
             }
         }
+    return pets;
     }
 
 
