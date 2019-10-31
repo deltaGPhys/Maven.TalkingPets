@@ -1,5 +1,7 @@
 package io.zipcoder.polymorphism;
 
+import java.util.Comparator;
+
 public class Cat extends Pet {
 
     public Cat(String name) {
@@ -10,5 +12,6 @@ public class Cat extends Pet {
     public String speak() {
         return "meh";
     }
+
 
 }

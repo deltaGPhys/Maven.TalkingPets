@@ -1,6 +1,6 @@
 package io.zipcoder.polymorphism;
 
-public class Pet {
+public class Pet implements Comparable<Pet>{
 
     private String name;
 
@@ -29,5 +29,13 @@ public class Pet {
         className = this.getClass().getName().split("\\.");
 
         return String.format("Pet: %s   Type: %s  Says: %s", this.getName(), className[className.length-1], this.speak());
+    }
+
+    public int compareTo(Pet pet2) {
+        if (!this.name.equals(pet2.getName())) {
+            return this.name.compareTo(pet2.getName());
+        } else {
+            return this.getClass().getName().compareTo(pet2.getClass().getName());
+        }
     }
 }
